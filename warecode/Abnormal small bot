@@ -1,0 +1,189 @@
+abnormal kiva code:
+
+{
+  "id": "1810704293498457600",
+  "code": "kubot-468",
+  "robotTypeCode": "RT_KUBOT_MINI_HAIFLEX",
+  "trayNormal": {
+    "64": true
+  },
+  "state": "IDLE",
+  "mode": "AUTO",
+  "paused": false,
+  "zone": "",
+  "energyLevel": 82,
+  "hardwareState": "ROBOT_ABNORMAL",
+  "isCharging": false,
+  "precisePosition": {
+    "x": "152950",
+    "y": "43904",
+    "z": "0"
+  },
+  "robot2mapTheta": "264",
+  "fork2robotTheta": "0",
+  "lockedStatePointCode": [
+    "POINT:152955:46099#270",
+    "POINT:152955:45429#270",
+    "POINT:152955:44939#270",
+    "POINT:152955:44449#270",
+    "POINT:152955:43959#270",
+    "POINT:152955:43289#270",
+    "POINT:152955:42799#270",
+    "POINT:152955:42309#270",
+    "POINT:152955:41819#270",
+    "POINT:152955:41149#270",
+    "POINT:152955:40659#270",
+    "POINT:152955:40169#270",
+    "POINT:152955:39679#270",
+    "POINT:152955:38349#270",
+    "POINT:152955:37429#270",
+    "POINT:152955:36659#270",
+    "POINT:152955:35889#270"
+  ],
+  "trayNumToState": {
+    "64": "FULL"
+  },
+  "otherHardwareInfo": {
+    "hardwareErrDesc": "",
+    "lastUpdateTime": "1739643722091",
+    "forkHeight": "305",
+    "forkAngle": "0",
+    "forkLength": "0",
+    "errorState": [
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      },
+      {
+        "type": "2147485189",
+        "node": "command_0000000000",
+        "info": "[APPROCH_TARGETS] actuator(lift) report dislocation!",
+        "code": "393217"
+      }
+    ],
+    "rfidInfo": [],
+    "extraState": 0,
+    "isPowerOff": false,
+    "locationState": "FAILURE",
+    "batteryInfo": {
+      "voltage": "46390",
+      "current": "-1339",
+      "cycle": 108,
+      "soh": 100,
+      "temperature": 24.1,
+      "lastEnergyChangeTime": "0"
+    },
+    "obstacle": [],
+    "locationScore": 0,
+    "mapVersion": {},
+    "speed": {
+      "x": "0",
+      "y": "0",
+      "t": "0"
+    },
+    "softwareVersion": "",
+    "safetyWorkMode": 0,
+    "robotIp": "10.46.8.217",
+    "locationId": ""
+  },
+  "unfinishedTransportTaskCode": {
+    "container:task-1824146167270741248": true
+  },
+  "assignedTransportTaskCode": [
+    "container:task-1824146167270741248#1"
+  ],
+  "trayLoadingContainerCode": {
+    "64": "PPPO2915596"
+  },
+  "jsonOfLastCommandWhichToOperatingContainer": "",
+  "belongLocationCode": "",
+  "lastStationCode": "LA_MINI_HAIFLEX_SHELF_STORAGE",
+  "lockedContainerTheta": [],
+  "lastWorkingAlleyNo": 7805,
+  "destPoint": "POINT:152955:33579",
+  "isCommandTimeout": false,
+  "needHumanTellForkState": false,
+  "isOfflineState": false,
+  "ipAddress": "",
+  "manufacturer": "",
+  "forbiddenMove": false,
+  "needHumanTellLiftFork": false,
+  "workState": "EXCEPTION",
+  "isPreparedForContainerAction": true,
+  "isSuspend": false,
+  "needMapCalibration": false,
+  "needMoveToStopPoint": false,
+  "needToStayPoint": false,
+  "isUnknownPosition": false
+
+
+⚠️ ERROR DETECTED on kubot-403:
+Error Codes: [{'type': '2147485188', 'node': 'chassis', 'info': 'SetTargetPosition::Action(TargetMoveAction) fail with error([TargetMove] control return error(stat=DEVIATE_PATH_TOO_MUCH info=side angle lager than 0.174533 while moving in line))', 'code': '5242882'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}, {'type': '2147485189', 'node': 'command_0000000000', 'info': '[APPROCH_TARGETS] actuator(chassis) report fault!', 'code': '393217'}]

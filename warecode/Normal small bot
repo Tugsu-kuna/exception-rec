@@ -1,0 +1,95 @@
+{
+  "id": "1810704293498457600",
+  "code": "kubot-468",
+  "robotTypeCode": "RT_KUBOT_MINI_HAIFLEX",
+  "trayNormal": {
+    "64": true
+  },
+  "state": "IDLE",
+  "mode": "AUTO",
+  "paused": false,
+  "zone": "",
+  "energyLevel": 80,
+  "hardwareState": "ROBOT_IDLE",
+  "isCharging": false,
+  "precisePosition": {
+    "x": 108098,
+    "y": 31924,
+    "z": 0
+  },
+  "robot2mapTheta": 181,
+  "fork2robotTheta": 0,
+  "lockedStatePointCode": [
+    "POINT:108095:31930#180"
+  ],
+  "trayNumToState": {
+    "64": "FULL"
+  },
+  "otherHardwareInfo": {
+    "hardwareErrDesc": "",
+    "lastUpdateTime": "1739644049480",
+    "forkHeight": "308",
+    "forkAngle": "0",
+    "forkLength": "0",
+    "errorState": [],
+    "rfidInfo": [],
+    "extraState": 0,
+    "isPowerOff": false,
+    "locationState": "FAILURE",
+    "batteryInfo": {
+      "voltage": "46210",
+      "current": "-1300",
+      "cycle": 108,
+      "soh": 100,
+      "temperature": 24,
+      "lastEnergyChangeTime": "0"
+    },
+    "obstacle": [
+      {
+        "area": 0,
+        "distance": "800",
+        "lastUpdateTime": "1739644050937"
+      }
+    ],
+    "locationScore": 0,
+    "mapVersion": {},
+    "speed": {
+      "x": "0",
+      "y": "0",
+      "t": "0"
+    },
+    "softwareVersion": "",
+    "safetyWorkMode": 0,
+    "robotIp": "10.46.8.217",
+    "locationId": ""
+  },
+  "unfinishedTransportTaskCode": {
+    "RK-05:call-1824148823233008896": true
+  },
+  "assignedTransportTaskCode": [
+    "RK-05:call-1824148823233008896#0"
+  ],
+  "trayLoadingContainerCode": {
+    "64": ""
+  },
+  "jsonOfLastCommandWhichToOperatingContainer": "",
+  "belongLocationCode": "",
+  "lastStationCode": "LA_MINI_HAIFLEX_SHELF_STORAGE",
+  "lockedContainerTheta": [],
+  "lastWorkingAlleyNo": 7805,
+  "destPoint": "POINT:107175:33579",
+  "isCommandTimeout": false,
+  "needHumanTellForkState": false,
+  "isOfflineState": false,
+  "ipAddress": "",
+  "manufacturer": "",
+  "forbiddenMove": false,
+  "needHumanTellLiftFork": false,
+  "workState": "EXCEPTION",
+  "isPreparedForContainerAction": true,
+  "isSuspend": false,
+  "needMapCalibration": false,
+  "needMoveToStopPoint": false,
+  "needToStayPoint": false,
+  "isUnknownPosition": false
+}
