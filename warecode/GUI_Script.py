@@ -1,7 +1,7 @@
 import sys
 import requests
 import time
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtCore import QThread, pyqtSignal, QTimer
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTabWidget, QListWidget, QTableWidget, \
     QTableWidgetItem, QPushButton, QHBoxLayout
 
@@ -13,7 +13,7 @@ headers = {'Content-Type': 'application/json', 'accept': 'application/json'}
 
 # The Robot Monitor Thread that checks the robot states every 1 second
 class RobotMonitorThread(QThread):
-    # Signal to update the main GUI with the robot error states
+    update_signal = pyqtSignal(list)  # Signal to update the monitoring tab
     error_signal = pyqtSignal(str, str, str)  # (Robot Name, Error Message, Start Time)
 
     def __init__(self):
@@ -37,9 +37,11 @@ class RobotMonitorThread(QThread):
                     continue
 
                 robots = result['data']['robot']
+                robot_data = []
                 for robot in robots:
                     name = robot.get('code', 'Unknown Robot')
                     state = robot.get('hardwareState', 'UNKNOWN')
+                    robot_data.append((name, state))
                     error_info = robot.get('otherHardwareInfo', {}).get('errorState', [])
 
                     # If robot is abnormal and has an error
@@ -53,10 +55,13 @@ class RobotMonitorThread(QThread):
                             self.error_logs[name] = start_time
                             self.error_signal.emit(name, error_message, start_time)
 
+                # Update monitoring tab
+                self.update_signal.emit(robot_data)
+
             except Exception as e:
                 print(f"🚨 Error: {str(e)}")
 
-            time.sleep(1)  # Prevent CPU overload
+            time.sleep(1)
 
     def stop(self):
         self.running = False
@@ -75,6 +80,7 @@ class RobotMonitorApp(QMainWindow):
 
         # Start the robot monitor thread to check robot statuses
         self.monitor_thread = RobotMonitorThread()
+        self.monitor_thread.update_signal.connect(self.update_monitoring_tab)
         self.monitor_thread.error_signal.connect(self.add_exception)
         self.monitor_thread.start()
 
@@ -106,13 +112,18 @@ class RobotMonitorApp(QMainWindow):
         layout = QVBoxLayout()
 
         self.exception_table = QTableWidget()
-        self.exception_table.setColumnCount(5)
+        self.exception_table.setColumnCount(6)
         self.exception_table.setHorizontalHeaderLabels(
-            ["Robot ID", "Error Type", "Time of Exception", "Time Handled", "Comment"])
+            ["Robot ID", "Error Type", "Time of Exception", "Time Handled", "Comment", "Action"])
 
         layout.addWidget(self.exception_table)
         tab.setLayout(layout)
         return tab
+
+    def update_monitoring_tab(self, robot_data):
+        self.robot_list.clear()
+        for robot_id, state in robot_data:
+            self.robot_list.addItem(f"{robot_id}: {state}")
 
     def add_exception(self, robot_id, error_type, exception_time, handled_time=None, comment=None):
         # Add a new row to the exception table
