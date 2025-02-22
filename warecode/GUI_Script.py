@@ -1,8 +1,9 @@
 import sys
 import requests
 import time
-from PyQt5.QtCore import QThread, pyqtSignal, QTimer
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTabWidget, QListWidget, QTableWidget, \
+import os
+from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTabWidget, QTableWidget, \
     QTableWidgetItem, QPushButton, QHBoxLayout
 
 # ESS API URL and Headers for Robot Status
@@ -10,11 +11,14 @@ ess_ip = 'http://10.251.3.25:9000/'
 query_type_url = ess_ip + 'ess-api/model/queryModelByType?modelType=robot'
 headers = {'Content-Type': 'application/json', 'accept': 'application/json'}
 
+# Log file path
+log_file_path = "D:\\Project\\warecode\\exception.txt"
+
 
 # The Robot Monitor Thread that checks the robot states every 1 second
 class RobotMonitorThread(QThread):
     update_signal = pyqtSignal(list)  # Signal to update the monitoring tab
-    error_signal = pyqtSignal(str, str, str)  # (Robot Name, Error Message, Start Time)
+    error_signal = pyqtSignal(str, str, str, str)  # (Robot Name, Error Message, Start Time, Handled Time)
 
     def __init__(self):
         super().__init__()
@@ -44,18 +48,19 @@ class RobotMonitorThread(QThread):
                     robot_data.append((name, state))
                     error_info = robot.get('otherHardwareInfo', {}).get('errorState', [])
 
-                    # If robot is abnormal and has an error
                     if state == "ROBOT_ABNORMAL" and error_info:
-                        error_texts = list(set([err["info"] for err in error_info]))  # Remove duplicates
+                        error_texts = list(set([err["info"] for err in error_info]))
                         error_message = "\n".join(error_texts)
-
-                        # Emit signal to the main thread to update the GUI
                         if name not in self.error_logs:
                             start_time = time.strftime("%Y-%m-%d %H:%M:%S")
                             self.error_logs[name] = start_time
-                            self.error_signal.emit(name, error_message, start_time)
+                            self.error_signal.emit(name, error_message, start_time, "N/A")
 
-                # Update monitoring tab
+                    elif name in self.error_logs:
+                        handled_time = time.strftime("%Y-%m-%d %H:%M:%S")
+                        self.error_signal.emit(name, "Resolved", self.error_logs[name], handled_time)
+                        del self.error_logs[name]
+
                 self.update_signal.emit(robot_data)
 
             except Exception as e:
@@ -69,7 +74,6 @@ class RobotMonitorThread(QThread):
         self.wait()
 
 
-# Main Window of the Robot Monitoring System
 class RobotMonitorApp(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -78,7 +82,6 @@ class RobotMonitorApp(QMainWindow):
 
         self.initUI()
 
-        # Start the robot monitor thread to check robot statuses
         self.monitor_thread = RobotMonitorThread()
         self.monitor_thread.update_signal.connect(self.update_monitoring_tab)
         self.monitor_thread.error_signal.connect(self.add_exception)
@@ -86,7 +89,6 @@ class RobotMonitorApp(QMainWindow):
 
     def initUI(self):
         self.tabs = QTabWidget()
-
         self.monitoring_tab = self.create_monitoring_tab()
         self.exception_handling_tab = self.create_exception_handling_tab()
         self.workflow_tab = QWidget()
@@ -101,8 +103,10 @@ class RobotMonitorApp(QMainWindow):
         tab = QWidget()
         layout = QVBoxLayout()
 
-        self.robot_list = QListWidget()
-        layout.addWidget(self.robot_list)
+        self.robot_table = QTableWidget()
+        self.robot_table.setColumnCount(2)
+        self.robot_table.setHorizontalHeaderLabels(["Robot ID", "State"])
+        layout.addWidget(self.robot_table)
 
         tab.setLayout(layout)
         return tab
@@ -121,38 +125,36 @@ class RobotMonitorApp(QMainWindow):
         return tab
 
     def update_monitoring_tab(self, robot_data):
-        self.robot_list.clear()
-        for robot_id, state in robot_data:
-            self.robot_list.addItem(f"{robot_id}: {state}")
+        self.robot_table.setRowCount(0)
+        for row_index, (robot_id, state) in enumerate(robot_data):
+            self.robot_table.insertRow(row_index)
+            self.robot_table.setItem(row_index, 0, QTableWidgetItem(robot_id))
+            self.robot_table.setItem(row_index, 1, QTableWidgetItem(state))
 
-    def add_exception(self, robot_id, error_type, exception_time, handled_time=None, comment=None):
-        # Add a new row to the exception table
+    def add_exception(self, robot_id, error_type, exception_time, handled_time="N/A", comment="N/A"):
         row_position = self.exception_table.rowCount()
         self.exception_table.insertRow(row_position)
 
         self.exception_table.setItem(row_position, 0, QTableWidgetItem(robot_id))
         self.exception_table.setItem(row_position, 1, QTableWidgetItem(error_type))
         self.exception_table.setItem(row_position, 2, QTableWidgetItem(exception_time))
-        self.exception_table.setItem(row_position, 3, QTableWidgetItem(handled_time if handled_time else "N/A"))
-        self.exception_table.setItem(row_position, 4, QTableWidgetItem(comment if comment else "N/A"))
+        self.exception_table.setItem(row_position, 3, QTableWidgetItem(handled_time))
+        self.exception_table.setItem(row_position, 4, QTableWidgetItem(comment))
 
-        # Create the "Mark Complete" button to remove the exception once handled
         mark_complete_button = QPushButton("Mark Complete")
         mark_complete_button.clicked.connect(lambda: self.mark_as_done(row_position))
         self.exception_table.setCellWidget(row_position, 5, mark_complete_button)
 
+        self.log_exception(robot_id, error_type, exception_time, handled_time, comment)
+
     def mark_as_done(self, row):
-        robot_id = self.exception_table.item(row, 0).text()
-        error_type = self.exception_table.item(row, 1).text()
-        exception_time = self.exception_table.item(row, 2).text()
-
-        # Here, you could save the completed exception to a file, database, or online sheet.
-        print(f"Marking as done: {robot_id}, {error_type}, {exception_time}")
-
         self.exception_table.removeRow(row)
 
+    def log_exception(self, robot_id, error_type, exception_time, handled_time, comment):
+        with open(log_file_path, "a") as log_file:
+            log_file.write(f"{robot_id}, {error_type}, {exception_time}, {handled_time}, {comment}\n")
+
     def closeEvent(self, event):
-        # Stop the monitoring thread when closing the app
         self.monitor_thread.stop()
         event.accept()
 

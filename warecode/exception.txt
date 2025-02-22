@@ -1,0 +1,28 @@
+kubot-426, [APPROCH_TARGETS] actuator(lift) report dislocation!, 2025-02-22 20:51:15, N/A, N/A
+kubot-406, [APPROCH_TARGETS] actuator(lift) report dislocation!, 2025-02-22 20:51:15, N/A, N/A
+kubot-406, Resolved, 2025-02-22 20:51:15, 2025-02-22 20:52:38, N/A
+kubot-426, Resolved, 2025-02-22 20:51:15, 2025-02-22 20:52:51, N/A
+kubot-426, [SyncRPDO1] linkhub command result error(waiting res message timeout)
+Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_chassis_r) with fault state(time=2025-02-22 20:52:48.541998 info={"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_CHASSIS_R":"DC-Bus under voltage"}))
+[SyncTPDO2] linkhub command result error(waiting res message timeout)
+[APPROCH_TARGETS] actuator(chassis) report fault!
+[SyncTPDO1] linkhub command result error(waiting res message timeout)
+Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_lift) with fault state(time=2025-02-22 20:52:48.532031 info={"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_LIFT":"DC-Bus under voltage"}))
+DC-Bus under voltage, 2025-02-22 20:52:52, N/A, N/A
+kubot-426, Resolved, 2025-02-22 20:52:52, 2025-02-22 20:52:53, N/A
+kubot-426, [APPROCH_TARGETS] actuator(lift) report dislocation!, 2025-02-22 20:57:12, N/A, N/A
+kubot-447, [APPROCH_TARGETS] actuator(lift) report dislocation!, 2025-02-22 20:58:21, N/A, N/A
+kubot-447, Resolved, 2025-02-22 20:58:21, 2025-02-22 20:58:49, N/A
+kubot-447, [SyncRPDO1] linkhub command result error(waiting res message timeout)
+[APPROCH_TARGETS] actuator(chassis) report fault!
+Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_chassis_l) with fault state(time=2025-02-22 20:58:46.926488 info={"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_CHASSIS_L":"DC-Bus under voltage"}))
+[SyncTPDO2] linkhub command result error(waiting res message timeout)
+Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_lift) with fault state(time=2025-02-22 20:58:46.939423 info={"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_LIFT":"DC-Bus under voltage"})), 2025-02-22 20:58:52, N/A, N/A
+kubot-447, Resolved, 2025-02-22 20:58:52, 2025-02-22 20:58:53, N/A
+kubot-426, Resolved, 2025-02-22 20:57:12, 2025-02-22 20:59:05, N/A
+kubot-426, Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_lift) with fault state(time=2025-02-22 20:59:03.372114 info={"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_LIFT":"DC-Bus under voltage"}))
+[SyncRPDO1] linkhub command result error(waiting res message timeout)
+[APPROCH_TARGETS] actuator(chassis) report fault!
+[SyncTPDO2] linkhub command result error(waiting res message timeout)
+Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_chassis_r) with fault state(time=2025-02-22 20:59:03.362031 info={"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_CHASSIS_R":"DC-Bus under voltage"})), 2025-02-22 20:59:14, N/A, N/A
+kubot-426, Resolved, 2025-02-22 20:59:14, 2025-02-22 20:59:15, N/A
