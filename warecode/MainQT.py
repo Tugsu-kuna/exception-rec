@@ -2,25 +2,59 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTa
     QTableWidgetItem, QPushButton, QHBoxLayout
 import sys
 
+#  New imoprts by Kolomiiets Dmytro
+import os
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QGraphicsDropShadowEffect
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QFrame
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QHeaderView
+#########################################################
 
 class RobotMonitorApp(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        # Window ico path
+        icon_path = os.path.join(os.path.dirname(__file__), "ico", "icon.ico")
+
+
+        # Set new icon to window
+        self.setWindowIcon(QIcon(icon_path))
+
         self.setWindowTitle("Robot Monitoring System")
-        self.setGeometry(100, 100, 800, 600)
+        self.setGeometry(100, 100, 1270, 720)
 
         self.initUI()
 
     def initUI(self):
         self.tabs = QTabWidget()
 
+        # Buttons ico paths
+        monitoring_ico_path     = os.path.join(os.path.dirname(__file__), "ico", "monitoring.svg")
+        exception_ico_path      = os.path.join(os.path.dirname(__file__), "ico", "filter.svg")
+        workflow_ico_path       = os.path.join(os.path.dirname(__file__), "ico", "view.svg")
+
         self.monitoring_tab = self.create_monitoring_tab()
         self.exception_handling_tab = self.create_exception_handling_tab()
         self.workflow_tab = QWidget()
 
-        self.tabs.addTab(self.monitoring_tab, "Monitoring")
-        self.tabs.addTab(self.exception_handling_tab, "Exception Handling")
-        self.tabs.addTab(self.workflow_tab, "Workflow")
+
+        self.tabs.addTab(self.monitoring_tab, QIcon(monitoring_ico_path), "Monitoring")
+        self.tabs.addTab(self.exception_handling_tab, QIcon(exception_ico_path), "Exception Handling")
+        self.tabs.addTab(self.workflow_tab, QIcon(workflow_ico_path), "Workflow")
+
+
+        # Added shadow on some elements 
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(10)
+        shadow.setColor(QColor(0, 0, 0, 120))
+        shadow.setOffset(3, 3)
+
+        self.tabs.setGraphicsEffect(shadow)
+        ###########################################################
 
         self.setCentralWidget(self.tabs)
 
@@ -38,10 +72,25 @@ class RobotMonitorApp(QMainWindow):
         tab = QWidget()
         layout = QVBoxLayout()
 
+        # Add frame if you no need you can remove it
+        frame = QFrame()
+        frame.setFrameShape(QFrame.Box)
+        frame.setLineWidth(2)
+        layout.addWidget(frame)
+
+        # Create Table for data
         self.exception_table = QTableWidget()
         self.exception_table.setColumnCount(5)
         self.exception_table.setHorizontalHeaderLabels(
             ["Robot ID", "Error Type", "Time of Exception", "Time Handled", "Comment"])
+
+        # Set automaticly columns width
+        header = self.exception_table.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents + 20)  # Just for check will be better to change on Stretch
+        header.setSectionResizeMode(1, QHeaderView.Stretch)           
+        header.setSectionResizeMode(2, QHeaderView.Stretch)          
+        header.setSectionResizeMode(3, QHeaderView.Stretch)           
+        header.setSectionResizeMode(4, QHeaderView.Stretch)           
 
         layout.addWidget(self.exception_table)
         tab.setLayout(layout)
@@ -66,7 +115,13 @@ class RobotMonitorApp(QMainWindow):
 
 
 if __name__ == "__main__":
+    font = QFont("Arial", 10)  # Could be changed on other any font
+
     app = QApplication(sys.argv)
+    app.setStyle("Fusion")  # Set style type like default
+    app.setFont(font)
+
     window = RobotMonitorApp()
     window.show()
+
     sys.exit(app.exec_())
