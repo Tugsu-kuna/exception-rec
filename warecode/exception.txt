@@ -26,3 +26,264 @@ kubot-426, Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(se
 [SyncTPDO2] linkhub command result error(waiting res message timeout)
 Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_chassis_r) with fault state(time=2025-02-22 20:59:03.362031 info={"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_CHASSIS_R":"DC-Bus under voltage"})), 2025-02-22 20:59:14, N/A, N/A
 kubot-426, Resolved, 2025-02-22 20:59:14, 2025-02-22 20:59:15, N/A
+kubot-402, Small Robot, [
+  {
+    "type": "2147484416",
+    "node": "lift_motor",
+    "info": "Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_lift) with fault state(time=2025-03-08 21:26:36.114844 info={\"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_LIFT\":\"DC-Bus under voltage\"}))",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "chassis_right_motor",
+    "info": "Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_chassis_r) with fault state(time=2025-03-08 21:26:36.124775 info={\"E_HAIROU_UNDER_VOLTAGE.N_DEVICE_PROCESS.N_DRIVER_SERVOMOTOR.N_SERVOMOTOR_CHASSIS_R\":\"DC-Bus under voltage\"}))",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "chassis_left_motor",
+    "info": "[SyncRPDO1] linkhub command result error(waiting res message timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "chassis_right_motor",
+    "info": "[SyncRPDO1] linkhub command result error(waiting res message timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "lift_motor",
+    "info": "[SyncTPDO2] linkhub command result error(waiting res message timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484160",
+    "node": "emergency_stop_button_B",
+    "info": "emergency stop button was pressed",
+    "code": "65541"
+  },
+  {
+    "type": "2147484160",
+    "node": "emergency_stop_button_B",
+    "info": "emergency stop button was pressed",
+    "code": "65541"
+  }
+], 2025-03-08 21:26:42, N/A
+kubot-402, Small Robot, Resolved, 2025-03-08 21:26:42, 2025-03-08 21:27:14
+kubot-407, Small Robot, [
+  {
+    "type": "2147485188",
+    "node": "chassis",
+    "info": "SetTargetPosition::Action(TargetMoveAction) fail with error([TargetMove] control return error(stat=DEVIATE_PATH_TOO_MUCH info=side angle lager than 0.174533 while moving in line))",
+    "code": "5242882"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  }
+], 2025-03-08 21:27:16, N/A
+kubot-407, Small Robot, Resolved, 2025-03-08 21:27:16, 2025-03-08 21:33:01
+kubot-450, Small Robot, [
+  {
+    "type": "2147484416",
+    "node": "lift_motor",
+    "info": "Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_lift) get signal output state(fault) timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "chassis_right_motor",
+    "info": "Action(MonitorHealth) produce an error([MonitorHealth] servo_motor(servomotor_chassis_r) get signal output state(fault) timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "chassis_left_motor",
+    "info": "[SyncRPDO1] linkhub command result error(waiting res message timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "chassis_right_motor",
+    "info": "[SyncRPDO1] linkhub command result error(waiting res message timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484416",
+    "node": "lift_motor",
+    "info": "[SyncTPDO2] linkhub command result error(waiting res message timeout)",
+    "code": "2"
+  },
+  {
+    "type": "2147484164",
+    "node": "safe_stop_1",
+    "info": "safe stop 0 function has been activated",
+    "code": "65537"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  },
+  {
+    "type": "2147485189",
+    "node": "command_0000000000",
+    "info": "[APPROCH_TARGETS] actuator(chassis) report fault!",
+    "code": "393217"
+  }
+], 2025-03-08 21:36:03, N/A
+kubot-450, Small Robot, Resolved, 2025-03-08 21:36:03, 2025-03-08 21:42:20
