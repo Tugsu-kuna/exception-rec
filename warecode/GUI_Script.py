@@ -18,13 +18,19 @@ log_file_path = "D:\\Project\\warecode\\exception.txt"
 
 # The Robot Monitor Thread that checks the robot states every 1 second
 class RobotMonitorThread(QThread):
-    update_signal = pyqtSignal(list)  # Signal to update the monitoring tab
-    error_signal = pyqtSignal(str, str, str, str, str)  # (Robot Name, Robot Type, Error JSON, Start Time, Handled Time)
+    update_signal = pyqtSignal(list)
+    error_signal = pyqtSignal(str, str, str, str, str)
 
     def __init__(self):
         super().__init__()
         self.running = True
         self.error_logs = {}
+        self.handled_robots = set()  # <--- NEW: Track manually handled robots
+
+    def mark_robot_handled(self, robot_name):
+        self.handled_robots.add(robot_name)  # <--- NEW: Call this from GUI side
+        if robot_name in self.error_logs:
+            del self.error_logs[robot_name]
 
     def run(self):
         while self.running:
@@ -58,6 +64,9 @@ class RobotMonitorThread(QThread):
                         display_type = "Unknown Type"
 
                     robot_data.append((name, display_type, state))
+
+                    if name in self.handled_robots and state == "ROBOT_ABNORMAL":
+                        continue  # <--- NEW: Skip robots that user handled manually
 
                     if state == "ROBOT_ABNORMAL" and error_info:
                         error_json = json.dumps(error_info, indent=2)
@@ -137,25 +146,43 @@ class RobotMonitorApp(QMainWindow):
             self.robot_table.setItem(row_index, 2, QTableWidgetItem(state))
 
     def add_exception(self, robot_id, robot_type, error_json, exception_time, handled_time="N/A"):
-        row_position = self.exception_table.rowCount()
-        self.exception_table.insertRow(row_position)
-        self.exception_table.setItem(row_position, 0, QTableWidgetItem(robot_id))
-        self.exception_table.setItem(row_position, 1, QTableWidgetItem(robot_type))
-        self.exception_table.setItem(row_position, 2, QTableWidgetItem(error_json))
-        self.exception_table.setItem(row_position, 3, QTableWidgetItem(exception_time))
-        self.exception_table.setItem(row_position, 4, QTableWidgetItem(handled_time))
+        if error_json == "Resolved":
+            # Update existing row to mark it handled
+            self.update_exception_handled(robot_id, handled_time)
+        else:
+            # Normal case: Add a new exception row
+            row_position = self.exception_table.rowCount()
+            self.exception_table.insertRow(row_position)
+            self.exception_table.setItem(row_position, 0, QTableWidgetItem(robot_id))
+            self.exception_table.setItem(row_position, 1, QTableWidgetItem(robot_type))
+            self.exception_table.setItem(row_position, 2, QTableWidgetItem(error_json))
+            self.exception_table.setItem(row_position, 3, QTableWidgetItem(exception_time))
+            self.exception_table.setItem(row_position, 4, QTableWidgetItem(handled_time))
 
-        error_type_box = QLineEdit()
-        self.exception_table.setCellWidget(row_position, 5, error_type_box)
+            error_type_box = QLineEdit()
+            self.exception_table.setCellWidget(row_position, 5, error_type_box)
 
-        mark_complete_button = QPushButton("Mark Complete")
-        mark_complete_button.clicked.connect(lambda: self.mark_as_done(row_position))
-        self.exception_table.setCellWidget(row_position, 6, mark_complete_button)
+            mark_complete_button = QPushButton("Mark Complete")
+            mark_complete_button.clicked.connect(lambda _, btn=mark_complete_button: self.mark_as_done(btn))
+            self.exception_table.setCellWidget(row_position, 6, mark_complete_button)
 
-        self.log_exception(robot_id, robot_type, error_json, exception_time, handled_time)
+            self.log_exception(robot_id, robot_type, error_json, exception_time, handled_time)
 
-    def mark_as_done(self, row):
-        self.exception_table.removeRow(row)
+    def update_exception_handled(self, robot_id, handled_time):
+        for row in range(self.exception_table.rowCount()):
+            if self.exception_table.item(row, 0).text() == robot_id:
+                self.exception_table.setItem(row, 4, QTableWidgetItem(handled_time))
+                return
+
+    def mark_as_done(self, button):
+        index = self.exception_table.indexAt(button.pos())
+        row = index.row()
+        if row >= 0:
+            robot_id_item = self.exception_table.item(row, 0)
+            if robot_id_item:
+                robot_id = robot_id_item.text()
+                self.monitor_thread.mark_robot_handled(robot_id)
+            self.exception_table.removeRow(row)
 
     def log_exception(self, robot_id, robot_type, error_json, exception_time, handled_time):
         with open(log_file_path, "a") as log_file:
