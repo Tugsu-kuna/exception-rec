@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-ess_ip = 'http://10.251.3.25:9000/'
+ess_ip = 'http://10.251.3.24:9000/'
 query_type_url = ess_ip + 'ess-api/model/queryModelByType?modelType=robot'
 headers = {'Content-Type': 'application/json', 'accept': 'application/json'}
 
