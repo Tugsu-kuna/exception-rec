@@ -1,0 +1,8 @@
+kubot-317, Unknown Type, [
+  {
+    "type": "0",
+    "node": "",
+    "info": "Action(RefreshStatus) produce an error([RefreshStatus] localization return error(stat=TAG_POS_NODAT info=initial tag position is not available))",
+    "code": "436289888"
+  }
+], 2025-10-15 07:56:51, N/A
