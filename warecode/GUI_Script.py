@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTa
     QTableWidgetItem, QPushButton, QHBoxLayout, QLineEdit
 
 # ESS API URL and Headers for Robot Status
-ess_ip = 'http://10.251.3.25:9000/'
+ess_ip = 'http://10.251.3.24:9000/'
 query_type_url = ess_ip + 'ess-api/model/queryModelByType?modelType=robot'
 headers = {'Content-Type': 'application/json', 'accept': 'application/json'}
 
