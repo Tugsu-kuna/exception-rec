@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QTabWidget, QWidget, QVBoxLayout, QTableWidget, QTableWidgetItem, QPushButton
 from core.monitor_thread import RobotMonitorThread
+from ui.blacklist_tab import BlacklistTab
 
 class RobotMonitorApp(QMainWindow):
     def __init__(self):
@@ -18,9 +19,10 @@ class RobotMonitorApp(QMainWindow):
         self.monitoring_tab = self.create_monitoring_tab()
         self.exception_handling_tab = self.create_exception_handling_tab()
         self.workflow_tab = QWidget()
-
+        self.blacklist_tab = BlacklistTab()
         self.tabs.addTab(self.monitoring_tab, "Monitoring")
         self.tabs.addTab(self.exception_handling_tab, "Exception Handling")
+        self.tabs.addTab(self.blacklist_tab, "Blacklist")
         self.tabs.addTab(self.workflow_tab, "Workflow")
         self.setCentralWidget(self.tabs)
 

@@ -40,7 +40,7 @@ class RobotMonitorThread(QThread):
                 for robot in robots:
                     name = robot.get('code', 'Unknown Robot')
                     if is_blacklisted(name, self.blacklist_ranges):
-                        continue
+                        continue    ## IMPORTANT
 
                     state = robot.get('hardwareState', 'UNKNOWN')
                     robot_type = robot.get('robotTypeCode', 'UNKNOWN')
