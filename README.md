@@ -1,9 +1,23 @@
-# - Feb 22 implementations, Functional script and GUI to manage exceptions.
-# - Rudimentary writing exceptions to files
-# - Displays statuses of robot and exceptions that have occured 
-# - The said exceptios can persist until user says otherwise
-# - Yet to be implemented:
-# --Login and shift system for technicians
-# --Excel file that compatible with online master sheet, ability to push local sheets to online sheet
-# --Classification system, Error codes are often misleading so we can assume some errors to correct issue, option will still be included 
-# --UI overhaul and much more
+Repo structure
+
+exception-rec/warecode
+│
+├── GUI_Script.py                # entry point, starts the app
+├── ui/
+│   ├── __init__.py
+│   ├── main_window.py     # QMainWindow, tabs, layout
+│   ├── blacklist_tab.py   # GUI for blacklist management
+│   └── exception_tab.py   # GUI for exception handling
+│
+├── core/
+│   ├── __init__.py
+│   ├── monitor_thread.py  # RobotMonitorThread class
+│   ├── blacklist.py       # load/save/check blacklist
+│   └── reporting.py       # export to CSV/Excel
+│
+├── resources/
+│   ├── blacklist.json     # your ranges
+│   └── icons/             # any images/icons
+│
+└── misc
+
